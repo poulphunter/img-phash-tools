@@ -1,0 +1,8 @@
+uv
+pip
+prospector[with-everything]
+black
+setuptools
+pytest
+coverage
+pytest-cov
