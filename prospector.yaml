@@ -1,0 +1,113 @@
+output-format: text
+strictness: veryhigh
+inherits:
+    # - strictness_medium
+    - strictness_veryhigh
+    - full_pep8
+pep8:
+    full: true
+test-warnings: true
+doc-warnings: false
+member-warnings: false
+ignore-paths:
+  - docs
+# ignore-patterns:
+  # - (^|/)skip(this)?(/|$)
+# autodetect: true
+autodetect: false
+# max-line-length: 88
+
+bandit:
+  run: true
+  # options:
+    # config: .bandit.yml
+
+dodgy:
+  run: true
+
+frosted:
+  run: true
+  # disable:
+    # - E103
+    # - E306
+
+mccabe:
+  run: true
+  # options:
+    # max-complexity: 10
+
+pycodestyle:
+  run: true
+  full: true
+  disable:
+    - D213
+    - D212
+    - D203
+    - D205
+    # - W602
+    # - W603
+  # enable:
+    # - W601
+  options:
+    max-line-length: 79
+    ignore:
+      - D213
+      - D212
+      - D203
+      - D205
+
+pydocstyle:
+  run: true
+  disable:
+    - D213
+    - D212
+    - D203
+    - D205
+  # disable:
+    # - D100
+    # - D101
+
+pyflakes:
+  run: true
+  # disable:
+    # - F403
+    # - F810
+
+pylint:
+  run: true
+  # disable:
+    # - bad-builtin
+    # - too-few-public-methods
+  options:
+    max-locals: 15
+    max-returns: 6
+    max-branches: 15
+    max-statements: 60
+    max-parents: 7
+    max-attributes: 7
+    min-public-methods: 1
+    max-public-methods: 20
+    max-module-lines: 1000
+    max-line-length: 99
+
+pyroma:
+  run: true
+  # disable:
+    # - PYR15
+    # - PYR18
+
+pyright:
+  run: true
+  options:
+    level: warning
+    pythonversion: "3.13"
+    skipunannotated: true
+
+mypy:
+  run: true
+  # options:
+    # ignore-missing-imports: true
+    # follow-imports: skip
+
+vulture:
+  run: true
