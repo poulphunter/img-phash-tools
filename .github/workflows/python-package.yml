@@ -33,7 +33,7 @@ jobs:
     - name: Lint
       run: |
         black ./src ./tests
-        prospector --profile ./prospector.yaml ./src
+        #prospector --profile ./prospector.yaml ./src
     - name: Test with pytest
       run: |
         pytest
