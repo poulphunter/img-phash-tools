@@ -9,5 +9,5 @@ source ./.venv/bin/activate
 
 black ./src ./tests
 prospector --profile ./prospector.yaml ./src
-# You don't want to see this...
+# You don't want to see this... 😱
 #prospector --profile ./prospector.yaml ./tests
