@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 """Image Hash Command-line tool."""
+import os
 from pathlib import Path
 import cv2
 import numpy as np
@@ -10,7 +11,15 @@ from imgphash.image_phash import ImagePHash
 
 @pytest.fixture
 def make_images():
+    newpath = r'./tests/datas'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
     newImage = np.zeros((768, 768, 3), np.uint8)
+    cv2.imwrite(
+        "./tests/datas/imageBlack.png",
+        newImage,
+        [cv2.IMWRITE_PNG_COMPRESSION, 0],
+    )
     if not Path("./tests/datas/imageBlack.png").is_file():
         cv2.imwrite(
             "./tests/datas/imageBlack.png",
@@ -114,9 +123,11 @@ def make_images():
             newImage,
             [cv2.IMWRITE_PNG_COMPRESSION, 0],
         )
+    return True
 
 
 def test_toStr(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
@@ -127,6 +138,7 @@ def test_toStr(make_images):
 
 
 def test_bad_mode(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="sdfdsfsdf",
@@ -139,6 +151,7 @@ def test_bad_mode(make_images):
 
 
 def test_bad_filename(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="/tmp/dataNotFound.png",
         mode="pHash",
@@ -151,6 +164,7 @@ def test_bad_filename(make_images):
 
 
 def test_pHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
@@ -216,6 +230,7 @@ def test_pHash(make_images):
 
 
 def test_averageHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="averageHash",
@@ -235,6 +250,7 @@ def test_averageHash(make_images):
 
 
 def test_blockMeanHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="blockMeanHash",
@@ -257,6 +273,7 @@ def test_blockMeanHash(make_images):
 
 
 def test_marrHildrethHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="marrHildrethHash",
@@ -279,6 +296,7 @@ def test_marrHildrethHash(make_images):
 
 
 def test_radialVarianceHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="radialVarianceHash",
@@ -301,6 +319,7 @@ def test_radialVarianceHash(make_images):
 
 
 def test_colorMomentHash(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="colorMomentHash",
@@ -324,6 +343,7 @@ def test_colorMomentHash(make_images):
 
 
 def test_flip_v(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
@@ -337,6 +357,7 @@ def test_flip_v(make_images):
 
 
 def test_flip_h(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
@@ -350,6 +371,7 @@ def test_flip_h(make_images):
 
 
 def test_flip_v_h(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
@@ -365,6 +387,7 @@ def test_flip_v_h(make_images):
 
 
 def test_distance(make_images):
+    assert make_images==True
     img_hash = ImagePHash(
         filename="./tests/datas/imageBlackRectangle2.png",
         mode="pHash",
