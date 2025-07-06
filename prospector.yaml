@@ -105,7 +105,8 @@ pyright:
 
 mypy:
   run: true
-  # options:
+  options:
+    follow-untyped-imports: true
     # ignore-missing-imports: true
     # follow-imports: skip
 
