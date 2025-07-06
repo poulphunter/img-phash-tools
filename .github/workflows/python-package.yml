@@ -36,4 +36,4 @@ jobs:
         #prospector --profile ./prospector.yaml ./src
     - name: Test with pytest
       run: |
-        pytest
+        pytest -v
