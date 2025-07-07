@@ -10,7 +10,7 @@ from imgphash.image_phash import ImagePHash
 from dupimg.cli import run_fast_scandir
 
 
-def qsimg_cli(
+def qsimg_cli(  # noqa: MC0001
     # pylint: disable=too-many-arguments,too-many-locals
     directory: Annotated[
         str,
@@ -32,6 +32,12 @@ def qsimg_cli(
         int,
         typer.Option(help="Seed for the random generator"),
     ] = -1,
+    extensions: Annotated[
+        str,
+        typer.Option(
+            help="List of extensions to filter " "separated by a coma."
+        ),
+    ] = "jpg,jpeg,png,gif,webp,bmp",
     mode: Annotated[
         str,
         typer.Option(
@@ -97,13 +103,14 @@ def qsimg_cli(
         rand = False
     if not Path(directory).is_dir():
         raise ValueError("Directory not found", directory)
-    _, files = run_fast_scandir(
-        directory, [".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"], recurse
-    )
+    ext: list[str] = []
+    for ex in extensions.split(","):
+        ext.append("." + ex)
+    _, files = run_fast_scandir(directory, ext, recurse)
     if seed != -1:
         random.seed(seed)
     if rand:
-        reference = files[random.randint(0, len(files))]  # nosec B311
+        reference = files[random.randint(0, len(files) - 1)]  # nosec B311
     my_file = Path(reference)
     if not my_file.is_file():
         raise ValueError("File not found", reference)

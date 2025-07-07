@@ -36,6 +36,12 @@ def dupimg_cli(  # pylint: disable=too-many-arguments,too-many-locals
         typer.Argument(help="The directory name."),
     ] = ".",
     *,
+    extensions: Annotated[
+        str,
+        typer.Option(
+            help="List of extensions to filter " "separated by a coma."
+        ),
+    ] = "jpg,jpeg,png,gif,webp,bmp",
     mode: Annotated[
         str,
         typer.Option(
@@ -96,9 +102,11 @@ def dupimg_cli(  # pylint: disable=too-many-arguments,too-many-locals
     my_file = Path(directory)
     if not my_file.is_dir():
         raise ValueError("Directory not found", directory)
-    _, files = run_fast_scandir(
-        directory, [".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"], recurse
-    )
+    ext: list[str] = []
+    for ex in extensions.split(","):
+        ext.append("." + ex)
+    _, files = run_fast_scandir(directory, ext, recurse)
+    _, files = run_fast_scandir(directory, ext, recurse)
     files_hash: dict[str, dict[str, bool]] = {}
     duplicates: dict[str, dict[str, bool]] = {}
     for _, file in enumerate(files):
