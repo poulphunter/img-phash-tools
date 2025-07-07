@@ -18,6 +18,10 @@ permissions:
   contents: read
 
 jobs:
+
+  tests:
+    uses: ./.github/workflows/python-package.yml
+    
   release-build:
     runs-on: ubuntu-latest
 
