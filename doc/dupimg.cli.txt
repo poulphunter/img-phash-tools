@@ -1,0 +1,27 @@
+                                                                                                                                                                                            
+ Usage: dupimg [OPTIONS] [DIRECTORY]                                                                                                                                                        
+                                                                                                                                                                                            
+ Find duplicates images with perceptual hash algorithms.                                                                                                                                    
+                                                                                                                                                                                            
+ It returns a list of filenames separated by a ';'                                                                                                                                          
+ On the same line, the files are similar.                                                                                                                                                   
+ On other lines, there is other duplicate files.                                                                                                                                            
+                                                                                                                                                                                            
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   directory      [DIRECTORY]  The directory name. [default: .]                                                                                                                           │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --extensions                                                TEXT     List of extensions to filter separated by a coma. [default: jpg,jpeg,png,gif,webp,bmp]                              │
+│ --mode                                                      TEXT     The hash mode : [averageHash, blockMeanHash, marrHildrethHash, pHash, radialVarianceHash]. [default: pHash]         │
+│ --recurse                                   --no-recurse             Recurse over folders. [default: recurse]                                                                            │
+│ --flip-v                                    --no-flip-v              Flip the image vertically (so hash will be flip resistant). [default: no-flip-v]                                    │
+│ --flip-h                                    --no-flip-h              Flip the image horizontally (so hash will be flip resistant). [default: no-flip-h]                                  │
+│ --block-mean-hash-mode                                      INTEGER  block_mean_hash_mode int, default:0 [default: 0]                                                                    │
+│ --marr-hildreth-hash-alpha                                  FLOAT    marr_hildreth_hash_alpha float, default:2.0 [default: 2.0]                                                          │
+│ --marr-hildreth-hash-scale                                  FLOAT    marr_hildreth_hash_scale float, default:1.0 [default: 1.0]                                                          │
+│ --radial-variance-hash-sigma                                FLOAT    radial_variance_hash_sigma float, default:1.0 [default: 1.0]                                                        │
+│ --radial-variance-hash-num-of-angle-line                    INTEGER  radial_variance_hash_num_of_angle_line int, default:180 [default: 180]                                              │
+│ --install-completion                                                 Install completion for the current shell.                                                                           │
+│ --show-completion                                                    Show completion for the current shell, to copy it or customize the installation.                                    │
+│ --help                                                               Show this message and exit.                                                                                         │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

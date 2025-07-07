@@ -1,0 +1,29 @@
+                                                                                                                                                                                            
+ Usage: imgphash [OPTIONS] [FILENAME]                                                                                                                                                       
+                                                                                                                                                                                            
+ Use to print the perceptual hash of an image.                                                                                                                                              
+                                                                                                                                                                                            
+ See https://www.phash.org or                                                                                                                                                               
+ https://www.phash.org/docs/pubs/thesis_zauner.pdf                                                                                                                                          
+ for more informations on the algorithms.                                                                                                                                                   
+ It return the hashes into an integer, you can use hamming distance on his bits to find similar images.                                                                                     
+ With --compare option, it will return the hamming distance between the two images.                                                                                                         
+                                                                                                                                                                                            
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   filename      [FILENAME]  The file name. [default: .]                                                                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --mode                                                      TEXT     The hash mode : [averageHash, blockMeanHash, marrHildrethHash, pHash, radialVarianceHash]. [default: pHash]         │
+│ --flip-v                                    --no-flip-v              Flip the image vertically (so hash will be flip resistant). [default: no-flip-v]                                    │
+│ --flip-h                                    --no-flip-h              Flip the image horizontally (so hash will be flip resistant). [default: no-flip-h]                                  │
+│ --verbose                                   --no-verbose             Print more informations [default: no-verbose]                                                                       │
+│ --compare                                                   TEXT     Compare to an other image filename and return distance.                                                             │
+│ --block-mean-hash-mode                                      INTEGER  block_mean_hash_mode int, default:0 [default: 0]                                                                    │
+│ --marr-hildreth-hash-alpha                                  FLOAT    marr_hildreth_hash_alpha float, default:2.0 [default: 2.0]                                                          │
+│ --marr-hildreth-hash-scale                                  FLOAT    marr_hildreth_hash_scale float, default:1.0 [default: 1.0]                                                          │
+│ --radial-variance-hash-sigma                                FLOAT    radial_variance_hash_sigma float, default:1.0 [default: 1.0]                                                        │
+│ --radial-variance-hash-num-of-angle-line                    INTEGER  radial_variance_hash_num_of_angle_line int, default:180 [default: 180]                                              │
+│ --install-completion                                                 Install completion for the current shell.                                                                           │
+│ --show-completion                                                    Show completion for the current shell, to copy it or customize the installation.                                    │
+│ --help                                                               Show this message and exit.                                                                                         │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
