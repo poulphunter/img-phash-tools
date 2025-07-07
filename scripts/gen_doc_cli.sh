@@ -16,7 +16,7 @@ cp ./doc/README.to_gen.md ./README.test.md
 sed -e 's/[&%\\]/\\&/g' \
     -e '$!s/$/\\/' \
     -e '1s/^/s%dupimg_cli_replace%/' \
-     -e '$s/$/%g/' <<< $DUPIMG |
+     -e '$s/$/%g/' <<< "$DUPIMG" |
 # pass to second sed instance
 sed -f > "./README.test2.md" - "./README.test.md"
 rm "./README.test.md"
@@ -24,7 +24,7 @@ cp "./README.test2.md" "./README.test.md"
 sed -e 's/[&%\\]/\\&/g' \
     -e '$!s/$/\\/' \
     -e '1s/^/s%imgphash_cli_replace%/' \
-     -e '$s/$/%g/' <<< $IMGPHASH |
+     -e '$s/$/%g/' <<< "$IMGPHASH" |
 # pass to second sed instance
 sed -f > "./README.test2.md" - "./README.test.md"
 rm "./README.test.md"
@@ -32,7 +32,7 @@ cp "./README.test2.md" "./README.test.md"
 sed -e 's/[&%\\]/\\&/g' \
     -e '$!s/$/\\/' \
     -e '1s/^/s%qsimg_cli_replace%/' \
-     -e '$s/$/%g/' <<< $QSIMG |
+     -e '$s/$/%g/' <<< "$QSIMG" |
 # pass to second sed instance
 sed -f > "./README.test2.md" - "./README.test.md"
 rm "./README.test.md"
@@ -40,7 +40,7 @@ cp "./README.test2.md" "./README.test.md"
 sed -e 's/[&%\\]/\\&/g' \
     -e '$!s/$/\\/' \
     -e '1s/^/s%simg_cli_replace%/' \
-     -e '$s/$/%g/' <<< $SIMG |
+     -e '$s/$/%g/' <<< "$SIMG" |
 # pass to second sed instance
 sed -f > "./README.test2.md" - "./README.test.md"
 
