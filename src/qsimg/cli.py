@@ -36,7 +36,7 @@ def qsimg_cli(
         str,
         typer.Option(
             help="The hash mode : [averageHash, blockMeanHash, "
-            "colorMomentHash, marrHildrethHash, pHash, radialVarianceHash]."
+            "marrHildrethHash, pHash, radialVarianceHash]."
         ),
     ] = "pHash",
     recurse: Annotated[

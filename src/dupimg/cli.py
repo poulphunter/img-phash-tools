@@ -40,7 +40,7 @@ def dupimg_cli(  # pylint: disable=too-many-arguments,too-many-locals
         str,
         typer.Option(
             help="The hash mode : [averageHash, blockMeanHash, "
-            "colorMomentHash, marrHildrethHash, pHash, radialVarianceHash]."
+            "marrHildrethHash, pHash, radialVarianceHash]."
         ),
     ] = "pHash",
     recurse: Annotated[
