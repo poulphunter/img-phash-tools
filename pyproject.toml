@@ -39,6 +39,22 @@ email = "poulphunter@yahoo.fr"
 
 [tool.coverage.run]
 disable_warnings = ["no-data-collected"]
+omit = [
+    # omit anything in a .local directory anywhere
+    "*/.local/*",
+    # omit everything in /usr
+    "/usr/*",
+    # omit this single file
+    "config.py",
+    "config-3.py",
+    ]
+source = [
+    ".venv/lib/python3.11/site-packages/imgphash",
+    ".venv/lib/python3.11/site-packages/dupimg",
+    ".venv/lib/python3.11/site-packages/simg",
+    ".venv/lib/python3.11/site-packages/qsimg",
+    ".venv/lib/python3.11/site-packages/img-phash-tools",
+    ]
 
 [tool.pytest.ini_options]
 addopts = [
@@ -55,3 +71,6 @@ build-backend = "setuptools.build_meta"
 
 [project.scripts]
 imgphash = "imgphash.cli:app"
+dupimg = "dupimg.cli:app"
+simg = "simg.cli:app"
+qsimg = "qsimg.cli:app"

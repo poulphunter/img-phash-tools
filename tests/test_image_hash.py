@@ -11,9 +11,10 @@ from imgphash.image_phash import ImagePHash
 
 @pytest.fixture
 def make_images():
-    newpath = r"./tests/datas"
-    if not os.path.exists(newpath):
-        os.makedirs(newpath)
+    if not os.path.exists("./tests/datas"):
+        os.makedirs("./tests/datas")
+    if not os.path.exists("./tests/datas/2"):
+        os.makedirs("./tests/datas/2")
     newImage = np.zeros((768, 768, 3), np.uint8)
     cv2.imwrite(
         "./tests/datas/imageBlack.png",
@@ -64,6 +65,24 @@ def make_images():
         )
         cv2.imwrite(
             "./tests/datas/imageWhiteCircle1.png",
+            newImage,
+            [cv2.IMWRITE_PNG_COMPRESSION, 0],
+        )
+        newImage = cv2.flip(newImage, 0)
+        cv2.imwrite(
+            "./tests/datas/imageWhiteCircle1fv.png",
+            newImage,
+            [cv2.IMWRITE_PNG_COMPRESSION, 0],
+        )
+        newImage = cv2.flip(newImage, 1)
+        cv2.imwrite(
+            "./tests/datas/2/imageWhiteCircle1fvfh.png",
+            newImage,
+            [cv2.IMWRITE_PNG_COMPRESSION, 0],
+        )
+        newImage = cv2.flip(newImage, 0)
+        cv2.imwrite(
+            "./tests/datas/imageWhiteCircle1fh.png",
             newImage,
             [cv2.IMWRITE_PNG_COMPRESSION, 0],
         )
@@ -427,4 +446,28 @@ def test_distance(make_images):
     )
     assert (
         ImagePHash.hamming_distance(img_hash.hash[1], img_hash.hash[3]) == 27.0
+    )
+
+
+def test_min_distance(make_images):
+    assert make_images == True
+    img_hash = ImagePHash(
+        filename="./tests/datas/imageBlackRectangle2.png",
+        mode="pHash",
+        flip_v=True,
+        flip_h=True,
+    )
+    img_hash.image_hash_file()
+    img_hash2 = ImagePHash(
+        filename="./tests/datas/imageBlackRectangle1.png",
+        mode="pHash",
+        flip_v=True,
+        flip_h=True,
+    )
+    img_hash2.image_hash_file()
+    assert (
+        ImagePHash.min_hash_distance(
+            img_hash.hash, img_hash2.hash, verbose=True
+        )
+        == 18.0
     )

@@ -122,6 +122,25 @@ class ImagePHash:  # pylint: disable=too-many-instance-attributes
         )
 
     @staticmethod
+    def min_hash_distance(
+        a: List[np.ndarray], b: List[np.ndarray], verbose: bool = False
+    ) -> float:
+        """min_hash_distance."""
+        min_dist = -1.0
+        for _, h1 in enumerate(a):
+            for _, h2 in enumerate(b):
+                dist = ImagePHash.hamming_distance(h1, h2)
+                if min_dist == -1.0:
+                    min_dist = dist
+                min_dist = min(dist, min_dist)
+                if verbose:
+                    print(str(dist) + ";", end="")
+        if verbose:
+            print("")
+            print(str(min_dist) + ";")
+        return min_dist
+
+    @staticmethod
     def hamming_distance_v3(a: np.ndarray, b: np.ndarray) -> int:
         """hamming_distance_v3."""
         r = (1 << np.arange(8))[:, None]
