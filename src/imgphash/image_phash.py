@@ -28,33 +28,53 @@ class ImagePHash:  # pylint: disable=too-many-instance-attributes
         """__str__."""
         return f"{self.filename}({self.mode})"
 
-    def compute_hash(self, img: np.array) -> np.array:  # type: ignore
+    def compute_hash(self, img: np.array) -> np.array:  # type: ignore # noqa: MC0001
+        # pylint: disable=too-many-arguments,too-many-locals
+        # pylint: disable=too-many-return-statements
         """compute_hash."""
         if self.mode == "pHash":
-            return cv2.img_hash.pHash(img)
+            try:
+                return cv2.img_hash.pHash(img)
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         if self.mode == "averageHash":
-            return cv2.img_hash.averageHash(img)
+            try:
+                return cv2.img_hash.averageHash(img)
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         if self.mode == "blockMeanHash":
             # return cv2.img_hash.blockMeanHash(img)
-            return cv2.img_hash.blockMeanHash(
-                img, mode=self.block_mean_hash_mode
-            )
+            try:
+                return cv2.img_hash.blockMeanHash(
+                    img, mode=self.block_mean_hash_mode
+                )
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         if self.mode == "marrHildrethHash":
             # return cv2.img_hash.marrHildrethHash(img)
-            return cv2.img_hash.marrHildrethHash(
-                img,
-                alpha=self.marr_hildreth_hash_alpha,
-                scale=self.marr_hildreth_hash_scale,
-            )
+            try:
+                return cv2.img_hash.marrHildrethHash(
+                    img,
+                    alpha=self.marr_hildreth_hash_alpha,
+                    scale=self.marr_hildreth_hash_scale,
+                )
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         if self.mode == "radialVarianceHash":
             # return cv2.img_hash.radialVarianceHash(img)
-            return cv2.img_hash.radialVarianceHash(
-                img,
-                sigma=self.radial_variance_hash_sigma,
-                numOfAngleLine=self.radial_variance_hash_num_of_angle_line,
-            )
+            try:
+                return cv2.img_hash.radialVarianceHash(
+                    img,
+                    sigma=self.radial_variance_hash_sigma,
+                    numOfAngleLine=self.radial_variance_hash_num_of_angle_line,
+                )
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         if self.mode == "colorMomentHash":
-            return cv2.img_hash.colorMomentHash(img)
+            try:
+                return cv2.img_hash.colorMomentHash(img)
+            except:  # pylint: disable=bare-except
+                return cv2.img_hash.pHash(np.zeros((256, 256, 3), np.uint8))
         raise ValueError("Hash mode not found", self.mode)
 
     def image_hash_file(self) -> np.ndarray:
@@ -63,6 +83,8 @@ class ImagePHash:  # pylint: disable=too-many-instance-attributes
         if not my_file.is_file():
             raise ValueError("Filename not found", self.filename)
         img = cv2.imread(self.filename)
+        if img is None:  # in case of error, we use a blank image
+            img = np.zeros((256, 256, 3), np.uint8)
         h = self.compute_hash(img)
         self.hash.append(
             h[0]  # type: ignore # pylint: disable=unsubscriptable-object
