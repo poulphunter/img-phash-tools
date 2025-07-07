@@ -21,6 +21,8 @@ def make_images():
         newImage,
         [cv2.IMWRITE_PNG_COMPRESSION, 0],
     )
+    if not Path("./tests/datas/empty.png").is_file():
+        Path("./tests/datas/empty.png").touch()
     if not Path("./tests/datas/imageBlack.png").is_file():
         cv2.imwrite(
             "./tests/datas/imageBlack.png",
