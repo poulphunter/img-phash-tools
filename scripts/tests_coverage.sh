@@ -15,7 +15,7 @@ coverage run -a -m imgphash ./tests/datas/imageBlack.png --mode pHash --compare 
 coverage run -a -m imgphash ./tests/datas/imageBlackRectangle1.png --mode pHash --compare ./tests/datas/imageBlackRectangle2.png --flip-v
 coverage run -a -m imgphash ./tests/datas/imageBlackRectangle1.png --mode pHash --compare ./tests/datas/imageBlackRectangle2.png --flip-h
 coverage run -a -m imgphash ./tests/datas/imageBlackRectangle1.png --mode pHash --compare ./tests/datas/imageBlackRectangle2.png --flip-v --flip-h --verbose | grep "45.0;31.0;30.0;20.0;32.0;44.0;19.0;31.0;30.0;18.0;43.0;31.0;19.0;29.0;30.0;44.0;"
-coverage run -a -m dupimg ./tests/datas/123 2&>1 || true
+coverage run -a -m dupimg ./tests/datas/123 || true
 coverage run -a -m dupimg ./tests/datas/ --mode pHash --flip-v --flip-h | grep "./tests/datas/imageWhiteCircle1fv.png;./tests/datas/imageWhiteCircle1fh.png;./tests/datas/imageWhiteCircle1.png;./tests/datas/2/imageWhiteCircle1fvfh.png;"
 coverage run -a -m dupimg ./tests/datas/ --mode averageHash --recurse | grep "./tests/datas/imageBlackCircle1.png;./tests/datas/imageBlackRectangle2.png"
 
