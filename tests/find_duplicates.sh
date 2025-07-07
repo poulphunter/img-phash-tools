@@ -1,0 +1,1 @@
+find ./tests/datas -type f -printf "%s %f\n" | sort | uniq -d
