@@ -74,7 +74,7 @@ It's easier for symlink generation.
 `--max-files 3` limit the number of files out to 3
 
 You can now see the similar images:
-![./doc/demo_show_qsimg_sort.png](./doc/demo_show_qsimg_sort.png){width=600}  
+![./doc/demo_show_qsimg_sort.png](./doc/demo_show_qsimg_sort.png)  
   
 
 ## Dev  
